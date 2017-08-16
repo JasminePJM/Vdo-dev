@@ -1,8 +1,11 @@
 <template>
   <span class='star'>
-     <i class="el-icon-star-on" value="star" v-for="n in ratingObj.star" :key="'star'+n"></i>
+     <img src='../assets/icon/星.png' value="star" v-for="n in ratingObj.star" :key="'star'+n">
+     <img src='../assets/icon/半星.png' value="star_half" v-for="n in ratingObj.half" :key="'half'+n">
+     <img src='../assets/icon/空星.png' value="star_border" v-for="n in ratingObj.left" :key="'left'+n">
+     <!-- <i class="el-icon-star-on" value="star" v-for="n in ratingObj.star" :key="'star'+n"></i>
      <i class="el-icon-star-on" value="star_half" v-for="n in ratingObj.half" :key="'half'+n"></i>
-      <i class="el-icon-star-off" value="star_border" v-for="n in ratingObj.left" :key="'left'+n"></i>
+      <i class="el-icon-star-off" value="star_border" v-for="n in ratingObj.left" :key="'left'+n"></i> -->
    
     
     <!-- <mu-icon class='star-icon' value="star" v-for="n in ratingObj.star" :key="'star'+n"/>
@@ -34,6 +37,10 @@
 <style scoped>
   .star{
     display: flex;
+  }
+  .star img{
+    width: 13px;
+    height: 13px;
   }
 </style>
 

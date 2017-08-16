@@ -24,7 +24,11 @@
 	    		<!-- 电影子块文字内容 -->
 	    		<div class="item-content">
 	    			<p>{{Item.movieName}}</p>
-	    			<Star class='star-box' :rating="Item.average" v-if="Item.average > 0"></Star>
+	    			<div class="score-box">
+	    				<Star class='star-box' :rating="Item.average" v-if="Item.average > 0"></Star>
+	    				<span>{{Item.average}}</span>
+	    			</div>
+	    			
 	    			<p>导演：&nbsp{{Item.director}}</p>
 	    			<p>主演：&nbsp{{Item.actor}}</p>
 	    			<p>{{Item.browseTimes}}人看过</p>
@@ -86,9 +90,7 @@ export default {
 }
 </script>
 <style scoped>
-*{
 
-}
 .poster{
 	width: 100%;
 	height: 155px;
@@ -137,9 +139,18 @@ export default {
     margin-bottom: 5px;
     font-weight: bolder;
 }
-/*.item-content p:nth-child(2){
-	 margin-left: 15px;
-}*/
+.star-box{
+	margin-left: 15px;
+	margin-bottom: 6px;
+	width: 75px;
+	float: left;
+}
+.score-box{
+	width: 100%;
+	height: 19px;
+	font-size: 13px;
+	color:#777676
+}
 .item-content p:nth-child(3),.item-content p:nth-child(4){
     margin-left: 15px;
     margin-bottom: 3px;
@@ -151,6 +162,8 @@ export default {
     margin-bottom: 5px;
     font-size: 13px;
 }
+
+
 /*电影列表购买按钮*/
 .item-btn{
 	width: 18%;

@@ -26,7 +26,7 @@
 	    		    <BeingHit></BeingHit>
 	    		  </mt-tab-container-item>
 	    		  <mt-tab-container-item id="2">
-	    		    
+	    		    <ReadyHit></ReadyHit>
 	    		  </mt-tab-container-item>
 	    		 
 	    		</mt-tab-container>
@@ -48,6 +48,7 @@ Vue.component(TabItem.name, TabItem);
 Vue.component(Search.name, Search);
 
 import BeingHit from '@/view/hit/beingHit'
+import ReadyHit from '@/view/hit/readyHit'
 export default {
   data: function(){
     return {
@@ -62,7 +63,8 @@ export default {
   	}
   },
   components:{
-  	BeingHit:BeingHit
+  	BeingHit:BeingHit,
+  	ReadyHit:ReadyHit
   }
  
 }
@@ -103,17 +105,21 @@ export default {
 }
 .mint-navbar{
 	width: 100%;
+	border-bottom: 1px solid #ccc;
+
 }
 .mint-navbar .mint-tab-item.is-selected {
     border-bottom: 1.5px solid #4a4849;
     color: #4a4849;
     margin-bottom: 0px;
+    font-size: 14px !important;
 }
 .mint-navbar .mint-tab-item{
 	color: #949292;
+	font-size: 14px !important;
 }
 .mint-navbar .mint-tab-item {
     padding: 14px 0;
-    font-size: 18px;
 }
+
 </style>
