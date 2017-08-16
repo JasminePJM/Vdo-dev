@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import Home from '@/view/home.vue' //主框架
 import IsHit from '@/view/hit/isHit.vue' 
 

@@ -4,10 +4,7 @@
 const config = require('../../config');
 
 let url = {
-   
-    ctxPath: "/dist", //node服务dist目录
-
-    //staticPath:config.dev.staticPath,       //开发环境静态资源路径  
+    ctxPath: "/dist", //node服务dist目录  
     staticPath: process.env.NODE_ENV !== 'development' ?  config.build.staticPath: config.dev.staticPath
 };
 
@@ -15,6 +12,6 @@ let url = {
 
 
 export const api = {
-            'item':url.staticPath+'/dataJson/Project/item.json',//登录模拟接口，正式环境请删除
+       'beingHit':url.staticPath+'/Json/beingHit.json'//正在热映数据模拟接口
       
 }

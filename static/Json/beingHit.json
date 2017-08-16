@@ -1,0 +1,31 @@
+{
+   "movieItem":[
+	    {
+		   	"imgSrc":"../../../static/image/战狼2小.jpg",
+		   	"movieName":"战狼2",
+		   	"director":"吴京",
+		   	"actor":"吴京/弗兰克·格里罗/吴刚",
+		   	"browseTimes":327195,
+		   	"ticket":1,
+		   	"average":7
+	   },
+		{
+		   	"imgSrc":"../../../static/image/战狼2小.jpg",
+		   	"movieName":"战狼2",
+		   	"director":"吴京",
+		   	"actor":"吴京/弗兰克·格里罗/吴刚",
+		   	"browseTimes":327195,
+		   	"ticket":0,
+		   	"average":8
+		},
+		{
+		   	"imgSrc":"../../../static/image/战狼2小.jpg",
+		   	"movieName":"战狼2",
+		   	"director":"吴京",
+		   	"actor":"吴京/弗兰克·格里罗/吴刚",
+		   	"browseTimes":327195,
+		   	"ticket":1,
+		   	"average":9
+		}
+   ]
+}

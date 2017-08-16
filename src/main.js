@@ -3,14 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
+
+//Mint UI
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
-import 'font-awesome/css/font-awesome.css'
+//Element UI
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 
 
 Vue.use(MintUI)
 Vue.use(ElementUI)
+Vue.use(VueResource)
 Vue.config.productionTip = false
 
 
