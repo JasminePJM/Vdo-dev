@@ -72,25 +72,86 @@
           <div>
               <div class="swiper-container">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">Slide 1</div>
-                      <div class="swiper-slide">Slide 2</div>
-                      <div class="swiper-slide">Slide 3</div>
+                      <div class="swiper-slide">
+                          <div class='actor-content'>
+                            <img src="../../assets/img/吴京.jpg" width="100%">
+                              <p>吴京</p>
+                              <p>饰：冷锋</p>
+                          </div>
+                          <div class='actor-content'>
+                            <img src="../../assets/img/弗兰克.jpg" width="100%">
+                              <p>弗兰克·格里罗</p>
+                              <p>饰：老爹</p>
+                          </div>  
+                          <div class='actor-content'>
+                            <img src="../../assets/img/吴刚.jpg" width="100%">
+                              <p>吴刚</p>
+                              <p>饰：何建国</p>
+                          </div>
+                      </div>
+                      <div class="swiper-slide">
+                         <div class='actor-content'>
+                           <img src="../../assets/img/张翰.jpg" width="100%">
+                             <p>张翰</p>
+                             <p>饰：卓亦凡</p>
+                         </div>
+                         <div class='actor-content'>
+                           <img src="../../assets/img/Jade.jpg" width="100%">
+                             <p>卢靖姗</p>
+                             <p>饰：Rechel</p>
+                         </div>  
+                         <div class='actor-content'>
+                           <img src="../../assets/img/吴京.jpg" width="100%">
+                             <p>吴京</p>
+                             <p>导演</p>
+                         </div>
+                      </div>
+                     
                   </div>
-                  <!-- 如果需要分页器 -->
-                  <div class="swiper-pagination"></div>
-                  
-                  <!-- 如果需要导航按钮 -->
-                  <div class="swiper-button-prev"></div>
-                  <div class="swiper-button-next"></div>
-                  
-                  <!-- 如果需要滚动条 -->
-                  <div class="swiper-scrollbar"></div>
               </div>
 
 
           </div>
       </div>
+       
+      <!-- 预告片/剧照 -->
+      <div class="actor">
+          <p class="title">预告片/剧照</p>
+          <div>
+              <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照1.jpg" width="100%">
+                          </div>
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照6.jpg" width="100%" height="114">
+                          </div>
+                         
+                      </div>
+                      <div class="swiper-slide">
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照2.jpg" width="100%" height="114">
+                          </div>
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照3.jpg" width="100%" height="114">
+                          </div>
+                      </div>
+                      <div class="swiper-slide">
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照4.jpg" width="100%" height="114">
+                          </div>
+                          <div class='photo'>
+                            <img src="../../assets/img/剧照5.jpg" width="100%" height="114">
+                          </div>
+                      </div>
+                     
+                  </div>
+              </div>
 
+
+          </div>
+      </div>
 	    
 	</div>	
 </template>
@@ -103,8 +164,8 @@ Vue.component(Header.name, Header);
 import { api } from '@/global/api.js'  //导入静态资源'
 import Star from '@/components/star' //导入星星打分组件
 
-import Swiper from '../../../static/Js/swiper-3.3.1.min.js'
-require('../../../static/Js/swiper-3.3.1.min.js')
+import Swiper from '../../../static/Js/swiper-3.4.2.min.js'
+
 
 
 export default {
@@ -142,15 +203,11 @@ export default {
   },
   mounted(){
   	 this.getData();
-     console.log('挂载好了')
-          var mySwiper = new Swiper('.swiper-container', {
-            direction: 'horizontal',
-            loop: true,
-            pagination: '.swiper-pagination',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev'
-          })
-          console.log(mySwiper)
+      var mySwiper = new Swiper('.swiper-container', {
+        direction: 'horizontal',
+        loop: false,
+      })
+            
   }
  
 }
@@ -162,7 +219,7 @@ export default {
   height: auto;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
-  margin-top: 25px;
+  margin-top: 8px;
   padding:20px 15px 0;
 }
 .title{
@@ -177,12 +234,37 @@ export default {
 /*影人部分*/
 .actor{
   width: 100%;
-  height: 200px;
+  height: 230px;
   margin-top: 20px;
-  padding:0px 15px 0;
-  border: 1px solid #000;
+  padding:0px 0px 0px 15px;
+  /*border: 1px solid #000;*/
   box-sizing: border-box;
 }
+.actor-content{
+  width: 30%;
+  height: auto;
+  /*border:1px solid #000;*/
+  text-align: center;
+  float: left;
+  margin-right: 9px;
+}
+.actor-content p:nth-child(2){
+  font-size: 13px;
+}
+.actor-content p:nth-child(3){
+  font-size: 12px;
+  color:  #777676;
+  line-height: 1.5;
+}
+/*预告片*/
+.photo{
+  width: 47%;
+  margin-right: 9px;
+  float: left;
+}
+
+
+
 
 
 
@@ -298,6 +380,7 @@ export default {
   /*border: 1px solid green;*/
   padding:25px 0px 0px 15px;
   box-sizing: border-box;
+  margin-top: 5px;
 }
 .ticket-right{
   float: right;

@@ -15,6 +15,7 @@ import 'element-ui/lib/theme-default/index.css'
 import '../static/Js/swiper-3.4.2.min.css'
 import '../static/Js/swiper-3.4.2.min.js'
 
+import focus from './Js/focus'
 
 Vue.use(MintUI)
 Vue.use(ElementUI)
