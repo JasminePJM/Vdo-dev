@@ -1,6 +1,6 @@
 <template>
 	<div>
-<!-- 	    <div class="nav-select">
+	    <div class="nav-select">
 	    	
 	    		<span class='nav-left'>全部</span>
 	    		<span class='nav-left'>8月</span>
@@ -12,15 +12,15 @@
 	    		<span class='nav-right'>|</span>
 	    		    	
 	    </div>
-	    -->
-        <mt-navbar v-model="selected">
+	   
+        <!-- <mt-navbar v-model="selected">
           <mt-tab-item id="1">选项一</mt-tab-item>
           <mt-tab-item id="2">选项二</mt-tab-item>
           <mt-tab-item id="3">选项三</mt-tab-item>
-        </mt-navbar>
+        </mt-navbar> -->
 
         <!-- tab-container -->
-        <mt-tab-container v-model="selected">
+       <!--  <mt-tab-container v-model="selected">
           <mt-tab-container-item id="1">
             <mt-cell v-for="n in 10" :title="'内容 ' + n" />
           </mt-tab-container-item>
@@ -30,31 +30,31 @@
           <mt-tab-container-item id="3">
             <mt-cell v-for="n in 6" :title="'选项 ' + n" />
           </mt-tab-container-item>
-        </mt-tab-container>
+        </mt-tab-container> -->
 
 
 
-
+      <br/>
 	    <!-- 正在热映电影列表 -->
-	     <!-- <div class="movie-list">
-	    	<div class="movie-item" v-for='Item in movieItem'> -->
+	     <div class="movie-list">
+	    	<div class="movie-item" v-for='Item in movieItem'>
 	    	    <!-- 电影子块海报 -->
-	    		<!-- <div class="item-poster">
+	    		<div class="item-poster">
 	    			<img v-bind:src="Item.imgSrc">
-	    		</div> -->
+	    		</div>
 	    		<!-- 电影子块文字内容 -->
-	    		<!-- <div class="item-content">
+	    		<div class="item-content">
 	    			<p>{{Item.movieName}}</p>
 	    			<p>导演：&nbsp{{Item.director}}</p>
 	    			<p>主演：&nbsp{{Item.actor}}</p>
 	    			<p>{{Item.browseTimes}}人看过</p>
-	    		</div> -->
+	    		</div>
 	    		<!-- 电影子块购买按钮 -->
-	    		<!-- <div class="item-btn">
+	    		<div class="item-btn">
 	    			<mt-button plain class='btn-yellow' size="small">想看</mt-button>
 	    		</div>
 	    	</div>
-	    </div> -->
+	    </div>
 	    
 	</div>	
 </template>
@@ -110,28 +110,29 @@ export default {
 .nav-select{
 	width: 100%;
 	height: 30px;
-	border: 1px solid red;
+	/*border: 1px solid red;*/
+  border-bottom: 1px solid #ccc;
 	box-sizing:border-box;
 }
 .nav-left{
 	float: left;
-    font-size: 14px;
-    margin: 4px 7px;
-    color: #c0c5a3;
+  font-size: 14px;
+  margin: 4px 7px;
+  color: #949292;
 }
 .nav-right{
 	float:right;
 	font-size: 14px;
-    margin: 4px 7px;
-    color: #c0c5a3;
+  margin: 4px 7px;
+  color: #949292;
 }
 .mint-tab-item {
-    display: block;
-    padding: 10px 0;
-    width: 80px;
-    flex: 0; 
-    text-decoration: none;
-    margin: 5px 30px;
+  display: block;
+  padding: 10px 0;
+  width: 80px;
+  flex: 0; 
+  text-decoration: none;
+  margin: 5px 30px;
 }
 
 /*电影列表*/

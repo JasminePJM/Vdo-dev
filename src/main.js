@@ -11,6 +11,9 @@ import 'mint-ui/lib/style.css'
 //Element UI
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+// Swiper
+import '../static/Js/swiper-3.4.2.min.css'
+import '../static/Js/swiper-3.4.2.min.js'
 
 
 Vue.use(MintUI)

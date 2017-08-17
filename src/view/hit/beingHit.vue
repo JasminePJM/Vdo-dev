@@ -16,29 +16,32 @@
 	    </div>
 	    <!-- 正在热映电影列表 -->
 	    <div class="movie-list">
-	    	<div class="movie-item" v-for='Item in movieItem'>
-	    	    <!-- 电影子块海报 -->
-	    		<div class="item-poster">
-	    			<img v-bind:src="Item.imgSrc">
-	    		</div>
-	    		<!-- 电影子块文字内容 -->
-	    		<div class="item-content">
-	    			<p>{{Item.movieName}}</p>
-	    			<div class="score-box">
-	    				<Star class='star-box' :rating="Item.average" v-if="Item.average > 0"></Star>
-	    				<span>{{Item.average}}</span>
-	    			</div>
-	    			
-	    			<p>导演：&nbsp{{Item.director}}</p>
-	    			<p>主演：&nbsp{{Item.actor}}</p>
-	    			<p>{{Item.browseTimes}}人看过</p>
-	    		</div>
-	    		<!-- 电影子块购买按钮 -->
-	    		<div class="item-btn">
-	    			<mt-button plain size="small" v-if='Item.ticket'>购买</mt-button>
-	    			<mt-button plain class='btn-yellow' size="small" v-else>预售</mt-button>
-	    		</div>
-	    	</div>
+	        <router-link to='/detail'>
+            	<div class="movie-item" v-for='Item in movieItem'>
+            	    <!-- 电影子块海报 -->
+            		<div class="item-poster">
+            			<img v-bind:src="Item.imgSrc">
+            		</div>
+            		<!-- 电影子块文字内容 -->
+            		<div class="item-content">
+            			<p>{{Item.movieName}}</p>
+            			<div class="score-box">
+            				<Star class='star-box' :rating="Item.average" v-if="Item.average > 0"></Star>
+            				<span>{{Item.average}}</span>
+            			</div>
+            			
+            			<p>导演：&nbsp{{Item.director}}</p>
+            			<p>主演：&nbsp{{Item.actor}}</p>
+            			<p>{{Item.browseTimes}}人看过</p>
+            		</div>
+            		<!-- 电影子块购买按钮 -->
+            		<div class="item-btn">
+            			<mt-button plain size="small" v-if='Item.ticket'>购买</mt-button>
+            			<mt-button plain class='btn-yellow' size="small" v-else>预售</mt-button>
+            		</div>
+            	</div>
+	        </router-link>
+	    
 	    </div>
 	    
 	</div>	
@@ -187,5 +190,11 @@ export default {
     padding: 0 15px;
     height: 30px;
     font-weight: bold;
+}
+/*路由链接*/
+a:-webkit-any-link {
+    color: inherit;
+    cursor: auto;
+    text-decoration: underline;
 }
 </style>

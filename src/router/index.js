@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/view/home.vue' //主框架
-import IsHit from '@/view/hit/isHit.vue' 
+import Detail from '@/view/detail/index.vue' 
 
 
 
@@ -14,8 +14,8 @@ export default new Router({
       component:Home
     },
     {
-      path: '/IsHit',
-      component:IsHit
+      path: '/detail',
+      component:Detail
     }
   ]
 })
