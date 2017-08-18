@@ -35,6 +35,14 @@ module.exports = {
     // (https://github.com/webpack/css-loader#sourcemaps)
     // In our experience, they generally work as expected,
     // just be aware of this issue when enabling this option.
+    // '/api': {
+    //       target: 'http://api.douban.com/v2',
+    //       changeOrigin: true,
+    //       pathRewrite: {
+    //         '^/api': ''
+    //       }
+    //     }
+    //   },
     cssSourceMap: false
   }
 }

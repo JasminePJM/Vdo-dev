@@ -2,9 +2,8 @@
 	<div>
       <!-- 头部 -->
 	    <mt-header title="电影">
-        <router-link to="/" slot="left">
-          <mt-button icon="back"></mt-button>
-        </router-link>
+        <!-- <router-link to="/" slot="left"> -->
+          <mt-button icon="back" slot='left' @click='goback'></mt-button>
         <mt-button slot="right">
            <img src='../../assets/icon/分享48.png' width="21">
         </mt-button>
@@ -13,7 +12,7 @@
       <!-- 海报部分 -->
       <div class='div-poster'>
         <div class='poster'>
-            <img src="../../assets/img/战狼2小.jpg">
+            <img :src="jsondata.images.large">
         </div>
       </div>
 
@@ -21,17 +20,23 @@
       <div class="movie-head">
          <div class="movie-score">
            <div class="score-left">
-               <p>{{movieItem[0].movieName}}</p>
-               <p>{{movieItem[0].type}}</p>
-               <p>上映时间：{{movieItem[0].date}}({{movieItem[0].place}})</p>
+               <p>{{jsondata.title}}</p>
+               <p>{{jsondata.year}}/
+                  <span v-for='genres in jsondata.genres'>{{genres}}/</span>
+               </p>
+               <p>上映时间：{{movieItem[0].date}}
+                  (<span v-for='countries in jsondata.countries'>{{countries}}/</span>)
+               </p>
                <p>片长：{{movieItem[0].time}}</p>
            </div>
            <div class="score-right">
               <div class="score-box">
                 <p>豆瓣评分</p>
-                <p>{{movieItem[0].average}}</p>               
-                  <Star class='star-box' :rating="movieItem[0].average" v-if="movieItem[0].average > 0" ></Star>
-                <p>{{movieItem[0].browseTimes}}人</p>
+                <p>{{jsondata.rating.average}}</p>               
+                  <Star class='star-box' :rating="jsondata.rating.average"></Star>
+                <p v-if='jsondata.rating.average'>{{movieItem[0].browseTimes}}人</p>
+                <p v-else>{{jsondata.wish_count}}人想看</p>
+
               </div>
            </div>
             
@@ -59,10 +64,8 @@
       <!-- 电影内容简介 -->
       <div class="introduction">
          <p class="title">简介</p>
-         <div class="intro-content1" v-if='more'>故事发生在非洲附近的大海上，主人公冷锋（吴京 饰）遭遇人生滑铁卢，被“开除军籍”，本想漂泊一生的他，正当他打算这么做的时候，一场突如其来的意外打破了他的计划，突然被卷入了一场非洲国家叛乱，本可以安全撤离却因无法忘记曾…
-         <span style="color:green;" @click='show'>展开</span>
-         </div>
-         <div class="intro-content1" v-else>故事发生在非洲附近的大海上，主人公冷锋（吴京 饰）遭遇人生滑铁卢，被“开除军籍”，本想漂泊一生的他，正当他打算这么做的时候，一场突如其来的意外打破了他的计划，突然被卷入了一场非洲国家叛乱，本可以安全撤离，却因无法忘记曾经为军人的使命，孤身犯险冲回沦陷区，带领身陷屠杀中的同胞和难民，展开生死逃亡。随着斗争的持续，体内的狼性逐渐复苏，最终孤身闯入战乱区域，为同胞而战斗。 
+         <div class="intro-content1">
+         {{jsondata.summary}}
          </div>
       </div>
 
@@ -159,19 +162,20 @@
 <script>
 import Vue from 'vue'
 import { Header } from 'mint-ui';
-
-Vue.component(Header.name, Header);
 import { api } from '@/global/api.js'  //导入静态资源'
 import Star from '@/components/star' //导入星星打分组件
+import Swiper from '../../../static/Js/swiper-3.4.2.min.js'//导入Swiper插件
+import jsonp from '@/Js/json.js'//导入插口
 
-import Swiper from '../../../static/Js/swiper-3.4.2.min.js'
-
-
+Vue.component(Header.name, Header);
 
 export default {
+  created() {
+      this.request();
+  },
   data: function(){
     return {
-         more:1,
+         jsondata:{},
          movieItem:[
             {
               "movieName":"",
@@ -183,8 +187,6 @@ export default {
             }
 
          ]
-
-
     }
   },
   components:{
@@ -197,9 +199,17 @@ export default {
           data.movieItem=respone.data.movieItem;
         })
      },
-     show:function(){
-       this.more=0;
-     }
+     goback(){
+        this.$router.go(-1);
+     },
+     request() {
+        let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+        jsonp('https://api.douban.com/v2/movie/subject/' + this.$route.params.id, {}, function (data) {
+            loading.close();//结束loading效果
+            this.jsondata = data;
+            console.log('详细页',this.jsondata)
+        }.bind(this))
+    }
   },
   mounted(){
   	 this.getData();
@@ -278,7 +288,7 @@ export default {
 /*海报部分*/
 .div-poster{
   width: 100%;
-  height: 310px;
+  height: auto;
   background: rgba(24, 29, 26, 0.94);
   padding:15px 0;
   text-align: center;

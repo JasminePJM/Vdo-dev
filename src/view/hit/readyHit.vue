@@ -12,54 +12,40 @@
 	    		<span class='nav-right'>|</span>
 	    		    	
 	    </div>
-	   
-        <!-- <mt-navbar v-model="selected">
-          <mt-tab-item id="1">选项一</mt-tab-item>
-          <mt-tab-item id="2">选项二</mt-tab-item>
-          <mt-tab-item id="3">选项三</mt-tab-item>
-        </mt-navbar> -->
-
-        <!-- tab-container -->
-       <!--  <mt-tab-container v-model="selected">
-          <mt-tab-container-item id="1">
-            <mt-cell v-for="n in 10" :title="'内容 ' + n" />
-          </mt-tab-container-item>
-          <mt-tab-container-item id="2">
-            <mt-cell v-for="n in 4" :title="'测试 ' + n" />
-          </mt-tab-container-item>
-          <mt-tab-container-item id="3">
-            <mt-cell v-for="n in 6" :title="'选项 ' + n" />
-          </mt-tab-container-item>
-        </mt-tab-container> -->
-
-
 
       <br/>
 	    <!-- 正在热映电影列表 -->
 	     <div class="movie-list">
-	    	<div class="movie-item" v-for='Item in movieItem'>
-	    	    <!-- 电影子块海报 -->
-	    		<div class="item-poster">
-	    			<img v-bind:src="Item.imgSrc">
-	    		</div>
-	    		<!-- 电影子块文字内容 -->
-	    		<div class="item-content">
-	    			<p>{{Item.movieName}}</p>
-	    			<p>导演：&nbsp{{Item.director}}</p>
-	    			<p>主演：&nbsp{{Item.actor}}</p>
-	    			<p>{{Item.browseTimes}}人看过</p>
-	    		</div>
-	    		<!-- 电影子块购买按钮 -->
-	    		<div class="item-btn">
-	    			<mt-button plain class='btn-yellow' size="small">想看</mt-button>
-	    		</div>
+	    	<div class="movie-item" v-for='Item in jsondata.subjects'>
+          <router-link :to="{path:'/detail/'+Item.id}">
+               <!-- 电影子块海报 -->
+            <div class="item-poster">
+              <img v-bind:src="Item.images.small">
+            </div>
+            <!-- 电影子块文字内容 -->
+            <div class="item-content">
+              <p>{{Item.title}}</p>
+              <p>导演：&nbsp<span v-for='dire in Item.directors'>{{dire.name}}/</span></p>
+              <p>主演：&nbsp<span v-for='casts in Item.casts'>{{casts.name}}/</span></p>
+              <p>{{Item.collect_count}}人想看</p>
+            </div>
+            <!-- 电影子块购买按钮 -->
+            <div class="item-btn">
+              <mt-button plain class='btn-yellow' size="small">想看</mt-button>
+            </div>
+          </router-link>
+	    	 
 	    	</div>
 	    </div>
+      <div class="test"></div>
+      
 	    
 	</div>	
 </template>
 
 <script>
+import jsonp from '@/Js/json.js'//引入接口
+
 import Vue from 'vue'
 import { Swipe, SwipeItem } from 'mint-ui';
 import { Button } from 'mint-ui';
@@ -74,9 +60,13 @@ Vue.component(SwipeItem.name, SwipeItem);
 
 import { api } from '@/global/api.js'  //导入静态资源'
 export default {
+  created() {
+      this.request();
+  },
   data: function(){
     return {
     	selected:'1',
+      jsondata:{},
     	movieItem:[
          	{
          		imgSrc:"",
@@ -97,10 +87,23 @@ export default {
   	    	Vue.http.get(api.beingHit).then(function(respone){
   	    		data.movieItem=respone.data.movieItem;
   	    	})
-  	    }
+  	    },
+        request() {
+            // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+            jsonp('https://api.douban.com/v2/movie/coming_soon', {}, function (data) {
+                // loading.close();//结束loading效果
+                this.jsondata = data;
+                console.log(this.jsondata);
+            }.bind(this));
+           
+        }
+  },
+  watch: {
+      //监测$route对象，如果发生改变，就触发request方法
+      "$route":'request'
   },
   mounted(){
-  	this.getData();
+  	// this.getData();
   }
  
 }
@@ -208,5 +211,15 @@ export default {
     padding: 0 15px;
     height: 30px;
     font-weight: bold;
+}
+/*路由链接*/
+a:-webkit-any-link {
+    color: inherit;
+    cursor: auto;
+    text-decoration: underline;
+}
+.test{
+  width: 100%;
+  height: 500px;
 }
 </style>

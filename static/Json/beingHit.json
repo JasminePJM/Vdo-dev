@@ -20,7 +20,11 @@
 		   	"actor":"吴京/弗兰克·格里罗/吴刚",
 		   	"browseTimes":327195,
 		   	"ticket":0,
-		   	"average":5.8
+		   	"average":5.8,
+		   	"type":"2017/动作",
+		   	"date":"2017-07-27",
+		   	"place":"中国大陆",
+		   	"time":"123分钟"
 		},
 		{
 		   	"imgSrc":"../../../static/image/战狼2小.jpg",
@@ -29,7 +33,11 @@
 		   	"actor":"吴京/弗兰克·格里罗/吴刚",
 		   	"browseTimes":327195,
 		   	"ticket":1,
-		   	"average":6.5
+		   	"average":6.5,
+		   	"type":"2017/动作",
+		   	"date":"2017-07-27",
+		   	"place":"中国大陆",
+		   	"time":"123分钟"
 		}
    ]
 }

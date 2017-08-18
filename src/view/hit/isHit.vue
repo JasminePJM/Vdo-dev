@@ -6,12 +6,14 @@
 	    		<i class="el-icon-arrow-down"></i>
 	    	</div>
 	    	<div class="top-search">
+	    	 <router-link to='/search'>
 	    	 	<el-input
 	    	 	  placeholder="电影/电视剧/影人"
 	    	 	  icon="search"
 	    	 	  v-model="searchInput"
 	    	 	   :on-click="searchChange">
 	    	 	</el-input>
+	    	 	</router-link>
 	    	</div>
 	    </div>
 	    <div class="middle-nav">

@@ -17,8 +17,9 @@
               </div>
               <!-- 正在热映电影列表 -->
               <div class="movie-list">
-                  <router-link to='/detail'>
-                      <div class="movie-item" v-for='Item in jsondata.subjects'>
+                  
+                <div class="movie-item" v-for='(Item,index) in jsondata.subjects'>
+                    <router-link :to="{path:'/detail/'+Item.id}">
                           <!-- 电影子块海报 -->
                         <div class="item-poster">
                           <img v-bind:src="Item.images.small">
@@ -41,8 +42,9 @@
                           <mt-button plain size="small" v-if='Item.rating.average'>购买</mt-button>
                           <mt-button plain class='btn-yellow' size="small" v-else>预售</mt-button>
                         </div>
-                      </div>
-                  </router-link>
+                    </router-link>
+                </div>
+            
               
               </div>
               <div class="test"></div>
@@ -70,10 +72,8 @@
                 // this.getData();
             },
             data() {
-                return {
-                    currentPage: 0,
+                return {               
                     jsondata: {},
-                    countPage: 0
                 }
             },
             components:{
@@ -81,8 +81,9 @@
             },
             methods: {
                 request() {
-                    this.currentPage = this.$route.params.page;
+                    // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
                     jsonp('https://api.douban.com/v2/movie/in_theaters', {}, function (data) {
+                      // loading.close();//结束loading效果
                         this.jsondata = data;
                         console.log(this.jsondata);
                     }.bind(this));
@@ -98,7 +99,7 @@
 <style scoped>
 .test{
   width: 100%;
-  height: 300px;
+  height: 54px;
 }
 .poster{
   width: 100%;

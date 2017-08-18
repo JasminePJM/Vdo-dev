@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/view/home.vue' //主框架
 import Detail from '@/view/detail/index.vue' 
+import Search from '@/view/search.vue'
 
 
 
@@ -14,8 +15,12 @@ export default new Router({
       component:Home
     },
     {
-      path: '/detail',
+      path: '/detail/:id',
       component:Detail
+    },
+    {
+      path: '/search',
+      component:Search
     }
   ]
 })
