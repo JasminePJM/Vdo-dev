@@ -18,7 +18,7 @@
               <div class="swiper-container poster">
                   <div class="swiper-wrapper">
                      <div class="swiper-slide" >
-                         <img src="../../assets/img/三生三世.jpg" >
+                         <img src="../../assets/img/三生三世.jpg" width="100%" >
                      </div>
                       <div class="swiper-slide">
                           <img src="../../assets/img/破局海报.jpg" width="100%">
@@ -97,8 +97,8 @@
                   cube: {
                       shadow: true,
                       slideShadows: true,
-                      shadowOffset: 20,
-                      shadowScale: 0.94
+                      shadowOffset: 30,
+                      shadowScale: 0.55
                   }
                 })
             },
@@ -154,7 +154,7 @@
   width: 100%;
   height: 150px;
   border-bottom: 1px solid #ccc;
-  padding: 15px 5px 15px 10px;
+  padding: 15px 0.1rem 15px 0.2rem;
   box-sizing:border-box;
 }
 /*电影列表海报小图*/
@@ -176,12 +176,13 @@
   float: left;
 }
 .item-content p:nth-child(1){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 5px;
     font-weight: bolder;
+    font-size: 0.4rem;
 }
 .star-box{
-  margin-left: 15px;
+  margin-left: 0.3rem;
   margin-bottom: 6px;
   width: 75px;
   float: left;
@@ -193,15 +194,15 @@
   color:#777676
 }
 .item-content p:nth-child(3),.item-content p:nth-child(4){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 3px;
-    font-size: 13px;
+    font-size: 0.26rem;
     color:#777676;
 }
 .item-content p:nth-child(5){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 5px;
-    font-size: 13px;
+    font-size: 0.26rem;
 }
 
 
@@ -213,7 +214,7 @@
   float: left;
   box-sizing:border-box;
   padding-top: 40px;
-  padding-left: 5px;
+  padding-left: 0.1rem;
 }
 .mint-button--default.is-plain {
     border: 1px solid #d02f5e;
@@ -224,8 +225,8 @@
     color: orange !important;
 }
 .mint-button--small {
-    font-size: 12px;
-    padding: 0 15px;
+    font-size: 0.24rem;
+    padding: 0 0.3rem;
     height: 30px;
     font-weight: bold;
 }

@@ -1,8 +1,8 @@
 <template>
-	<div>
+  <div>
      <div class="input-box">
         <el-input class='input' 
-          placeholder="电影/电视剧/影人" autofocus
+          placeholder="电影/电视剧/影人"
           icon="search"
           v-model="movelName"
           @keyup.enter.native="request" >
@@ -10,7 +10,7 @@
         <span class='cancel' @click='goback'>取消</span>
      </div>
 
-     <div class="movie-list">
+     <div class="movie-list" v-if='search'>
       <div class="movie-item" v-for='Item in jsondata.subjects'>
          <router-link :to="{path:'/detail/'+Item.id}">
               <!-- 电影子块海报 -->
@@ -24,19 +24,30 @@
              <p>主演：&nbsp<span v-for='casts in Item.casts'>{{casts.name}}/</span></p>
              <p>{{Item.collect_count}}人想看</p>
            </div>
-          
+           <!-- 电影子块购买按钮 -->
+           <div class="item-btn">
+             <mt-button plain class='btn-yellow' size="small">想看</mt-button>
+           </div>
          </router-link>
        
       </div>
+    </div>
+    <div v-else class="rank">
+      <div class="rank-title">新片榜</div>
+        <div class="rank-list" v-for='(Item,index) in rank.subjects'>
+           <router-link :to="{path:'/detail/'+Item.id}">
+              {{index+1}}&nbsp&nbsp&nbsp{{Item.title}}
+           </router-link>
+        </div>
     </div>
 
 
 
 
 
-	   
-	    
-	</div>	
+     
+      
+  </div>  
 </template>
 
 <script>
@@ -48,27 +59,41 @@ import { Search } from 'mint-ui';
 Vue.component(Search.name, Search);
 
 export default {
+  created() {
+      this.getRank();
+  },
   data: function(){
     return {
-    	jsondata: {},
-      movelName:''
-      
+      jsondata: {},
+      movelName:'',
+      rank:'',
+      search:0
     }
   },
   methods:{
     goback(){
        this.$router.go(-1);
     },
-  	request(){
+    request(){
         let name=this.movelName;
-        let loading = Vue.prototype.$loading({text:"玩命加载中..."});
-  	    jsonp('https://api.douban.com/v2/movie/search'+'?q='+name, {}, function (data) {
-            loading.close();//结束loading效果
-  	        this.jsondata = data;
-  	        console.log('搜索',this.jsondata);
-  	    }.bind(this));
-  	   
-  	}
+        if(name!=''){
+           this.search=1;
+        }else{
+          this.search=0;
+        }
+        jsonp('https://api.douban.com/v2/movie/search'+'?q='+name, {}, function (data) {
+            // loading.close();//结束loading效果
+            this.jsondata = data;
+            console.log('搜索',this.jsondata);
+        }.bind(this));
+       
+    },
+    getRank(){
+      jsonp('https://api.douban.com/v2/movie/in_theaters', {count:10}, function (data) {
+          this.rank = data;
+          console.log('排名',this.rank);
+      }.bind(this));
+    }
   },
   watch: {
       //监测$route对象，如果发生改变，就触发request方法
@@ -83,7 +108,7 @@ export default {
   height: auto;
   padding: 6px 10px;
   box-sizing:border-box;
-  background: #666;
+  background: #243150;
 }
 .input{
   width: 85%;
@@ -133,12 +158,12 @@ a:-webkit-any-link{
 }
 .item-content p:nth-child(1){
     margin-left: 15px;
-    margin-bottom: 12px;
+    margin-bottom: 5px;
     font-weight: bolder;
 }
 .item-content p:nth-child(2),.item-content p:nth-child(3){
     margin-left: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-size: 13px;
     color:#777676;
 }
@@ -178,5 +203,29 @@ a:-webkit-any-link {
     color: inherit;
     cursor: auto;
     text-decoration: underline;
+}
+/*排行榜*/
+.rank{
+  width: 100%;
+  height: auto;
+ /* padding: 10px 20px;*/
+  box-sizing:border-box;
+  /*border: 1px solid #000;*/
+}
+.rank-list{
+  width: 100%;
+  height: auto;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.rank-title{
+  width: 100%;
+  background: #eae6e6;
+  height: auto;
+  padding: 12px 20px;
+  font-size: 14px;
+  color:#8391a5;
+  box-sizing:border-box;
 }
 </style>

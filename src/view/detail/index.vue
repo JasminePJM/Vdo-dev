@@ -1,7 +1,7 @@
 <template>
-	<div>
+  <div>
       <!-- 头部 -->
-	    <mt-header title="电影">
+      <mt-header title="电影">
         <!-- <router-link to="/" slot="left"> -->
           <mt-button icon="back" slot='left' @click='goback'></mt-button>
         <mt-button slot="right">
@@ -75,41 +75,12 @@
           <div>
               <div class="swiper-container">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                          <div class='actor-content' v-for='casts in jsondata.casts' >
+                      <div class="swiper-slide" v-for='casts in jsondata.casts'>
+                          <div class='actor-content' v-for='casts in jsondata.casts'>
                             <img :src="casts.avatars.medium" width="100%">
                               <p>{{casts.name}}</p>
                           </div>
-                         <!--  <div class='actor-content'>
-                            <img src="../../assets/img/弗兰克.jpg" width="100%">
-                              <p>弗兰克·格里罗</p>
-                              <p>饰：老爹</p>
-                          </div>  
-                          <div class='actor-content'>
-                            <img src="../../assets/img/吴刚.jpg" width="100%">
-                              <p>吴刚</p>
-                              <p>饰：何建国</p>
-                          </div> -->
-                      </div>
-
-                      <div class="swiper-slide">
-                        <!--  <div class='actor-content'>
-                           <img src="../../assets/img/张翰.jpg" width="100%">
-                             <p>张翰</p>
-                             <p>饰：卓亦凡</p>
-                         </div>
-                         <div class='actor-content'>
-                           <img src="../../assets/img/Jade.jpg" width="100%">
-                             <p>卢靖姗</p>
-                             <p>饰：Rechel</p>
-                         </div>  
-                         <div class='actor-content'>
-                           <img src="../../assets/img/吴京.jpg" width="100%">
-                             <p>吴京</p>
-                             <p>导演</p>
-                         </div> -->
-                      </div>
-                     
+                      </div>  
                   </div>
               </div>
 
@@ -123,43 +94,36 @@
           <div>
               <div class="swiper-container">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                      <div class="swiper-slide" >
                           <div class='photo'>
                             <img src="../../assets/img/剧照1.jpg" width="100%">
                           </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照6.jpg" width="100%" height="114">
-                          </div>
                          
                       </div>
-                      <div class="swiper-slide">
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照2.jpg" width="100%" height="114">
-                          </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照3.jpg" width="100%" height="114">
-                          </div>
-                      </div>
-                      <div class="swiper-slide">
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照4.jpg" width="100%" height="114">
-                          </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照5.jpg" width="100%" height="114">
-                          </div>
-                      </div>
-                     
                   </div>
               </div>
 
 
           </div>
       </div> -->
-    <!--   <div v-for='casts in jsondata.casts'>
-        <img :src="casts.avatars.medium">
-      </div> -->
-	    
-	</div>	
+
+<!--      <mt-navbar v-model="selected">
+       <mt-tab-item id="1">短评</mt-tab-item>
+       <mt-tab-item id="2">影评</mt-tab-item>
+     </mt-navbar> -->
+
+     <!-- tab-container -->
+    <!--  <mt-tab-container v-model="selected">
+       <mt-tab-container-item id="1">
+         <Comments></Comments>
+       </mt-tab-container-item>
+       <mt-tab-container-item id="2">
+         <Reviews></Reviews>
+       </mt-tab-container-item>
+     </mt-tab-container> -->
+
+      
+  </div>  
 </template>
 
 <script>
@@ -167,8 +131,14 @@ import Vue from 'vue'
 import { Header } from 'mint-ui';
 import { api } from '@/global/api.js'  //导入静态资源'
 import Star from '@/components/star' //导入星星打分组件
+import Comments from '@/view/detail/comments.vue'//导入短评组件
+import Reviews from '@/view/detail/reviews.vue'//导入短评组件
 import Swiper from '../../../static/Js/swiper-3.4.2.min.js'//导入Swiper插件
 import jsonp from '@/Js/json.js'//导入插口
+import { Navbar, TabItem } from 'mint-ui';//引入mintUI的导航条
+
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
 
 Vue.component(Header.name, Header);
 
@@ -179,6 +149,7 @@ export default {
   data: function(){
     return {
          jsondata:{},
+         selected:1,
          movieItem:[
             {
               "movieName":"",
@@ -193,10 +164,12 @@ export default {
     }
   },
   components:{
-    Star:Star
+    Star:Star,
+    Comments:Comments,
+    Reviews:Reviews
   },
   methods:{
-	   getData:function(){
+     getData:function(){
         let data=this;
         Vue.http.get(api.beingHit).then(function(respone){
           data.movieItem=respone.data.movieItem;
@@ -215,10 +188,13 @@ export default {
     }
   },
   mounted(){
-  	 this.getData();
+     this.getData();
       var mySwiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        loop: false,
+        pagination: '.swiper-pagination',
+        slidesPerView: 'auto',
+        paginationClickable: true,
+        spaceBetween: 30,
+        loop:false
       })
             
   }
@@ -247,7 +223,7 @@ export default {
 /*影人部分*/
 .actor{
   width: 100%;
-  height: 230px;
+  height: auto;
   margin-top: 20px;
   padding:0px 0px 0px 15px;
   /*border: 1px solid #000;*/
@@ -275,6 +251,26 @@ export default {
   width: 47%;
   margin-right: 9px;
   float: left;
+}
+.mint-navbar{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 20px;
+  background: #eae6e6;
+
+}
+.mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 1.5px solid #4a4849;
+    color: #4a4849;
+    margin-bottom: 0px;
+    font-size: 14px !important;
+}
+.mint-navbar .mint-tab-item{
+  color: #949292;
+  font-size: 14px !important;
+}
+.mint-navbar .mint-tab-item {
+    padding: 14px 0;
 }
 
 
@@ -379,7 +375,7 @@ export default {
   border: 1px solid orange !important;
   color: orange !important;
   font-weight: bolder;
-  margin-right: 2%;
+  margin-right: 10px;
   margin-top: 20px;
 }
 .btn-size1{
