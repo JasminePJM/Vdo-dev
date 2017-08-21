@@ -2,7 +2,7 @@
 	<div>
      <div class="input-box">
         <el-input class='input' 
-          placeholder="电影/电视剧/影人"
+          placeholder="电影/电视剧/影人" autofocus
           icon="search"
           v-model="movelName"
           @keyup.enter.native="request" >
@@ -24,10 +24,7 @@
              <p>主演：&nbsp<span v-for='casts in Item.casts'>{{casts.name}}/</span></p>
              <p>{{Item.collect_count}}人想看</p>
            </div>
-           <!-- 电影子块购买按钮 -->
-           <div class="item-btn">
-             <mt-button plain class='btn-yellow' size="small">想看</mt-button>
-           </div>
+          
          </router-link>
        
       </div>
@@ -64,9 +61,9 @@ export default {
     },
   	request(){
         let name=this.movelName;
-        console.log('========');
+        let loading = Vue.prototype.$loading({text:"玩命加载中..."});
   	    jsonp('https://api.douban.com/v2/movie/search'+'?q='+name, {}, function (data) {
-            // loading.close();//结束loading效果
+            loading.close();//结束loading效果
   	        this.jsondata = data;
   	        console.log('搜索',this.jsondata);
   	    }.bind(this));
@@ -136,12 +133,12 @@ a:-webkit-any-link{
 }
 .item-content p:nth-child(1){
     margin-left: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     font-weight: bolder;
 }
 .item-content p:nth-child(2),.item-content p:nth-child(3){
     margin-left: 15px;
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     font-size: 13px;
     color:#777676;
 }

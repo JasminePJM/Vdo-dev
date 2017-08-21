@@ -76,12 +76,11 @@
               <div class="swiper-container">
                   <div class="swiper-wrapper">
                       <div class="swiper-slide">
-                          <div class='actor-content'>
-                            <img src="../../assets/img/吴京.jpg" width="100%">
-                              <p>吴京</p>
-                              <p>饰：冷锋</p>
+                          <div class='actor-content' v-for='casts in jsondata.casts' >
+                            <img :src="casts.avatars.medium" width="100%">
+                              <p>{{casts.name}}</p>
                           </div>
-                          <div class='actor-content'>
+                         <!--  <div class='actor-content'>
                             <img src="../../assets/img/弗兰克.jpg" width="100%">
                               <p>弗兰克·格里罗</p>
                               <p>饰：老爹</p>
@@ -90,10 +89,11 @@
                             <img src="../../assets/img/吴刚.jpg" width="100%">
                               <p>吴刚</p>
                               <p>饰：何建国</p>
-                          </div>
+                          </div> -->
                       </div>
+
                       <div class="swiper-slide">
-                         <div class='actor-content'>
+                        <!--  <div class='actor-content'>
                            <img src="../../assets/img/张翰.jpg" width="100%">
                              <p>张翰</p>
                              <p>饰：卓亦凡</p>
@@ -107,7 +107,7 @@
                            <img src="../../assets/img/吴京.jpg" width="100%">
                              <p>吴京</p>
                              <p>导演</p>
-                         </div>
+                         </div> -->
                       </div>
                      
                   </div>
@@ -118,7 +118,7 @@
       </div>
        
       <!-- 预告片/剧照 -->
-      <div class="actor">
+     <!--  <div class="actor">
           <p class="title">预告片/剧照</p>
           <div>
               <div class="swiper-container">
@@ -154,7 +154,10 @@
 
 
           </div>
-      </div>
+      </div> -->
+    <!--   <div v-for='casts in jsondata.casts'>
+        <img :src="casts.avatars.medium">
+      </div> -->
 	    
 	</div>	
 </template>
@@ -260,6 +263,7 @@ export default {
 }
 .actor-content p:nth-child(2){
   font-size: 13px;
+  margin-bottom: 15px;
 }
 .actor-content p:nth-child(3){
   font-size: 12px;
@@ -375,7 +379,7 @@ export default {
   border: 1px solid orange !important;
   color: orange !important;
   font-weight: bolder;
-  margin-right: 10px;
+  margin-right: 2%;
   margin-top: 20px;
 }
 .btn-size1{

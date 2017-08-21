@@ -20,7 +20,7 @@
           <router-link :to="{path:'/detail/'+Item.id}">
                <!-- 电影子块海报 -->
             <div class="item-poster">
-              <img v-bind:src="Item.images.small">
+              <img v-bind:src="Item.images.medium">
             </div>
             <!-- 电影子块文字内容 -->
             <div class="item-content">
@@ -89,9 +89,9 @@ export default {
   	    	})
   	    },
         request() {
-            // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+            let loading = Vue.prototype.$loading({text:"玩命加载中..."});
             jsonp('https://api.douban.com/v2/movie/coming_soon', {}, function (data) {
-                // loading.close();//结束loading效果
+                loading.close();//结束loading效果
                 this.jsondata = data;
                 console.log(this.jsondata);
             }.bind(this));
@@ -203,8 +203,8 @@ export default {
     color: #d02f5e;
 }
 .btn-yellow{
-	border: 1px solid #d09f38 !important;
-    color: #d09f38 !important;
+  border: 1px solid orange !important;
+    color: orange !important;
 }
 .mint-button--small {
     font-size: 12px;

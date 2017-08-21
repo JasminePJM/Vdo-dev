@@ -2,7 +2,7 @@
 <template>
     <div>
          <!-- 海报轮播 -->
-              <div class="poster">
+       <!--        <div class="poster">
                 <mt-swipe :auto="10000">
                   <mt-swipe-item>
                          <img src="../../assets/img/战狼2海报.jpg">
@@ -14,7 +14,25 @@
                          <img src="../../assets/img/破局海报.jpg">
                   </mt-swipe-item>
                 </mt-swipe>
+              </div> -->
+              <div class="swiper-container poster">
+                  <div class="swiper-wrapper">
+                     <div class="swiper-slide" >
+                         <img src="../../assets/img/三生三世.jpg" >
+                     </div>
+                      <div class="swiper-slide">
+                          <img src="../../assets/img/破局海报.jpg" width="100%">
+                      </div>
+                      <div class="swiper-slide">
+                         <img src="../../assets/img/杀破狼海报.jpg" width="100%">
+                      </div>
+                      
+                  </div>
+                  <div class="swiper-pagination"></div>
               </div>
+
+
+
               <!-- 正在热映电影列表 -->
               <div class="movie-list">
                   
@@ -22,7 +40,7 @@
                     <router-link :to="{path:'/detail/'+Item.id}">
                           <!-- 电影子块海报 -->
                         <div class="item-poster">
-                          <img v-bind:src="Item.images.small">
+                          <img v-bind:src="Item.images.medium">
                         </div>
                         <!-- 电影子块文字内容 -->
                         <div class="item-content">
@@ -47,7 +65,7 @@
             
               
               </div>
-              <div class="test"></div>
+              <!-- <div class="test"></div> -->
     </div>
 </template>
 <script>
@@ -63,6 +81,7 @@
 
     import { api } from '@/global/api.js'  //导入静态资源'
     import Star from '@/components/star' //导入星星打分组件
+    import Swiper from '../../../static/Js/swiper-3.4.2.min.js'//导入Swiper插件
     export default
         {
             created() {
@@ -70,6 +89,18 @@
             },
             mounted(){
                 // this.getData();
+                var mySwiper = new Swiper('.swiper-container', {
+                  pagination: '.swiper-pagination',
+                  effect: 'cube',
+                  grabCursor: true,
+                  loop:true,
+                  cube: {
+                      shadow: true,
+                      slideShadows: true,
+                      shadowOffset: 20,
+                      shadowScale: 0.94
+                  }
+                })
             },
             data() {
                 return {               
@@ -81,9 +112,9 @@
             },
             methods: {
                 request() {
-                    // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+                    let loading = Vue.prototype.$loading({text:"玩命加载中..."});
                     jsonp('https://api.douban.com/v2/movie/in_theaters', {}, function (data) {
-                      // loading.close();//结束loading效果
+                      loading.close();//结束loading效果
                         this.jsondata = data;
                         console.log(this.jsondata);
                     }.bind(this));
@@ -189,8 +220,8 @@
     color: #d02f5e;
 }
 .btn-yellow{
-  border: 1px solid #d09f38 !important;
-    color: #d09f38 !important;
+  border: 1px solid orange !important;
+    color: orange !important;
 }
 .mint-button--small {
     font-size: 12px;
