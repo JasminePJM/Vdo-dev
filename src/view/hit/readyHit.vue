@@ -20,7 +20,11 @@
           <router-link :to="{path:'/detail/'+Item.id}">
                <!-- 电影子块海报 -->
             <div class="item-poster">
+<<<<<<< HEAD
               <img v-bind:src="Item.images.large">
+=======
+              <img v-bind:src="Item.images.medium">
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
             </div>
             <!-- 电影子块文字内容 -->
             <div class="item-content">
@@ -205,9 +209,14 @@ export default {
     color: #d02f5e;
 }
 .btn-yellow{
+<<<<<<< HEAD
 	  border: 0.02rem solid #d09f38 !important;
     color: #d09f38 !important;
     border-radius: 0.08rem;
+=======
+  border: 1px solid orange !important;
+    color: orange !important;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 }
 .mint-button--small {
     font-size: 0.24rem;

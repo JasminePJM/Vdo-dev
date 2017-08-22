@@ -1,6 +1,10 @@
 <template>
 	<div>
+<<<<<<< HEAD
 	   <!--  <mt-tabbar fixed>
+=======
+	    <!-- <mt-tabbar fixed>
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
          <mt-tab-item id="hit" @click.native.prevent="selected = 'tab-container1'">    
            <img slot="icon" src="../assets/icon/电影.png">
            热映  
@@ -17,6 +21,7 @@
        </mt-tabbar> -->
 
 
+<<<<<<< HEAD
        <!-- <div class="page-tab-container">  
           <mt-tab-container class="page-tabbar-tab-container" v-model="selected" swipeable>  
             <mt-tab-container-item id="tab-container1">   -->
@@ -31,6 +36,22 @@
             <mt-tab-container-item id="tab-container3">   -->
                 <!-- cell组件 -->  
            <!--    <mt-cell v-for="n in 7" title="tab-container 3"></mt-cell>  
+=======
+      <!--  <div class="page-tab-container">  
+          <mt-tab-container class="page-tabbar-tab-container" v-model="selected" swipeable>  
+            <mt-tab-container-item id="tab-container1">  --> 
+                <!-- cell组件 -->    
+                  <IsHit></IsHit>
+              
+           <!--  </mt-tab-container-item>  
+            <mt-tab-container-item id="tab-container2">  --> 
+                <!-- cell组件 -->  
+           <!--      
+            </mt-tab-container-item>  
+            <mt-tab-container-item id="tab-container3">   -->
+                <!-- cell组件 -->  
+             <!--  <mt-cell v-for="n in 7" title="tab-container 3"></mt-cell>  
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
             </mt-tab-container-item>  
           </mt-tab-container>  
         </div>   -->

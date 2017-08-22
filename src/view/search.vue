@@ -1,5 +1,5 @@
 <template>
-	<div>
+  <div>
      <div class="input-box">
         <el-input class='input' 
           placeholder="电影/电视剧/影人"
@@ -45,9 +45,9 @@
 
 
 
-	   
-	    
-	</div>	
+     
+      
+  </div>  
 </template>
 
 <script>
@@ -64,7 +64,11 @@ export default {
   },
   data: function(){
     return {
+<<<<<<< HEAD
     	jsondata: {},
+=======
+      jsondata: {},
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
       movelName:'',
       rank:'',
       search:0
@@ -74,13 +78,14 @@ export default {
     goback(){
        this.$router.go(-1);
     },
-  	request(){
+    request(){
         let name=this.movelName;
         if(name!=''){
            this.search=1;
         }else{
           this.search=0;
         }
+<<<<<<< HEAD
         console.log('========');
   	    jsonp('https://api.douban.com/v2/movie/search'+'?q='+name, {}, function (data) {
             // loading.close();//结束loading效果
@@ -89,6 +94,15 @@ export default {
   	    }.bind(this));
        
   	},
+=======
+        jsonp('https://api.douban.com/v2/movie/search'+'?q='+name, {}, function (data) {
+            // loading.close();//结束loading效果
+            this.jsondata = data;
+            console.log('搜索',this.jsondata);
+        }.bind(this));
+       
+    },
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
     getRank(){
       jsonp('https://api.douban.com/v2/movie/in_theaters', {count:10}, function (data) {
           this.rank = data;
@@ -110,8 +124,11 @@ export default {
   padding: 0.12rem 0.12rem;
   box-sizing:border-box;
   background: #243150;
+<<<<<<< HEAD
   margin-top:-0.6rem;
 
+=======
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 }
 .input{
   width: 87.5%;
@@ -235,16 +252,26 @@ a:-webkit-any-link {
 .rank-list{
   width: 100%;
   height: auto;
+<<<<<<< HEAD
   padding: 0.24rem 0.4rem;
   font-size: 0.28rem;
+=======
+  padding: 12px 20px;
+  font-size: 14px;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
   border-bottom: 1px solid #d9d9d9;
 }
 .rank-title{
   width: 100%;
   background: #eae6e6;
   height: auto;
+<<<<<<< HEAD
   padding: 0.24rem 0.4rem;
   font-size: 0.28rem;
+=======
+  padding: 12px 20px;
+  font-size: 14px;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
   color:#8391a5;
   box-sizing:border-box;
 }

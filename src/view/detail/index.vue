@@ -1,7 +1,11 @@
 <template>
+<<<<<<< HEAD
 	<div id='detail'>
+=======
+  <div>
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
       <!-- 头部 -->
-	    <mt-header title="电影">
+      <mt-header title="电影">
         <!-- <router-link to="/" slot="left"> -->
           <mt-button icon="back" slot='left' @click='goback'></mt-button>
         <mt-button slot="right">
@@ -107,7 +111,11 @@
           </div>
       </div> -->
 
+<<<<<<< HEAD
      <!-- <mt-navbar v-model="selected">
+=======
+<!--      <mt-navbar v-model="selected">
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
        <mt-tab-item id="1">短评</mt-tab-item>
        <mt-tab-item id="2">影评</mt-tab-item>
      </mt-navbar> -->
@@ -122,8 +130,13 @@
        </mt-tab-container-item>
      </mt-tab-container> -->
 
+<<<<<<< HEAD
 	    
 	</div>	
+=======
+      
+  </div>  
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 </template>
 
 <script>
@@ -169,7 +182,7 @@ export default {
     Reviews:Reviews
   },
   methods:{
-	   getData:function(){
+     getData:function(){
         let data=this;
         Vue.http.get(api.beingHit).then(function(respone){
           data.movieItem=respone.data.movieItem;
@@ -188,7 +201,7 @@ export default {
     }
   },
   mounted(){
-  	 this.getData();
+     this.getData();
       var mySwiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         slidesPerView: 'auto',
@@ -224,8 +237,13 @@ export default {
 #detail .actor{
   width: 100%;
   height: auto;
+<<<<<<< HEAD
   margin-top: 0.4rem;
   padding:0px 0px 0px 0.3rem;
+=======
+  margin-top: 20px;
+  padding:0px 0px 0px 15px;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
   /*border: 1px solid #000;*/
   box-sizing: border-box;
 }
@@ -237,9 +255,15 @@ export default {
   float: left;
   margin-right: 0.18rem;
 }
+<<<<<<< HEAD
 #detail .actor-content p:nth-child(2){
   font-size: 0.26rem;
   margin-bottom: 0.3rem;
+=======
+.actor-content p:nth-child(2){
+  font-size: 13px;
+  margin-bottom: 15px;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 }
 #detail .actor-content p:nth-child(3){
   font-size: 0.24rem;
@@ -252,6 +276,7 @@ export default {
   margin-right: 0.18rem;
   float: left;
 }
+<<<<<<< HEAD
 #detail .mint-navbar{
   width: 100%;
   border-bottom: 1px solid #ccc;
@@ -271,6 +296,27 @@ export default {
 }
 #detail .mint-navbar .mint-tab-item {
     padding: 0.28rem 0;
+=======
+.mint-navbar{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 20px;
+  background: #eae6e6;
+
+}
+.mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 1.5px solid #4a4849;
+    color: #4a4849;
+    margin-bottom: 0px;
+    font-size: 14px !important;
+}
+.mint-navbar .mint-tab-item{
+  color: #949292;
+  font-size: 14px !important;
+}
+.mint-navbar .mint-tab-item {
+    padding: 14px 0;
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 }
 
 

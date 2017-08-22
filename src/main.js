@@ -14,7 +14,13 @@ import 'element-ui/lib/theme-default/index.css'
 // Swiper
 import '../static/Js/swiper-3.4.2.min.css'
 import '../static/Js/swiper-3.4.2.min.js'
+<<<<<<< HEAD
 // 跨域
+=======
+
+import './Js/rem.js'// 适配方案
+
+>>>>>>> 129198bef02b2fc2c3d14870a5012be4d5ffcdcf
 import focus from './Js/focus'
 // 适配方案
 import './Js/rem.js'

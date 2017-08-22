@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "amfe-flexible": "^2.2.1",
     "axios": "^0.16.2",
     "babel-runtime": "^6.26.0",
     "element-ui": "^1.4.2",
