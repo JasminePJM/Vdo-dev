@@ -2,7 +2,7 @@
 <template>
     <div>
          <!-- 海报轮播 -->
-              <div class="poster">
+      <!--         <div class="poster">
                 <mt-swipe :auto="10000">
                   <mt-swipe-item>
                          <img src="../../assets/img/战狼2海报.jpg">
@@ -14,6 +14,22 @@
                          <img src="../../assets/img/破局海报.jpg">
                   </mt-swipe-item>
                 </mt-swipe>
+              </div> -->
+
+              <div class="swiper-container poster">
+                  <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                        <img src="../../assets/img/三生三世.jpg">
+                      </div>
+                      <div class="swiper-slide">
+                        <img src="../../assets/img/杀破狼海报.jpg">
+                      </div>
+                      <div class="swiper-slide">
+                         <img src="../../assets/img/破局海报.jpg">
+                      </div>
+                  </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination"></div>
               </div>
               <!-- 正在热映电影列表 -->
               <div class="movie-list">
@@ -22,7 +38,7 @@
                     <router-link :to="{path:'/detail/'+Item.id}">
                           <!-- 电影子块海报 -->
                         <div class="item-poster">
-                          <img v-bind:src="Item.images.small">
+                          <img v-bind:src="Item.images.large">
                         </div>
                         <!-- 电影子块文字内容 -->
                         <div class="item-content">
@@ -70,6 +86,13 @@
             },
             mounted(){
                 // this.getData();
+                var swiper = new Swiper('.swiper-container', {
+                    pagination: '.swiper-pagination',
+                    effect: 'flip',
+                    grabCursor: true,
+                    loop:true,
+                   
+                });
             },
             data() {
                 return {               
@@ -81,9 +104,9 @@
             },
             methods: {
                 request() {
-                    // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+                    let loading = Vue.prototype.$loading({text:"玩命加载中..."});
                     jsonp('https://api.douban.com/v2/movie/in_theaters', {}, function (data) {
-                      // loading.close();//结束loading效果
+                      loading.close();//结束loading效果
                         this.jsondata = data;
                         console.log(this.jsondata);
                     }.bind(this));
@@ -103,7 +126,7 @@
 }
 .poster{
   width: 100%;
-  height: 155px;
+  height: 3.5rem;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
   margin-top: 5px;
@@ -111,7 +134,7 @@
 }
 .poster img{
   width: 100%;
-  height: 155px;
+  height: 3.5rem;
 }
 .movie-list{
   width: 100%;
@@ -121,81 +144,85 @@
 }
 .movie-item{
   width: 100%;
-  height: 150px;
+  height: 3.55rem;
   border-bottom: 1px solid #ccc;
-  padding: 15px 5px 15px 10px;
+  padding: 15px 0.1rem 0.6rem 0.2rem;
   box-sizing:border-box;
 }
 /*电影列表海报小图*/
 .item-poster{
-  width: 25%;
-  height: 115px;
+  width: 28%;
+  height: 3rem;
   /*border: 1px solid #000;*/
   float: left;
 }
 .item-poster img{
   width: 100%;
-  height: 115px; 
+  height: 3rem; 
 }
 /*电影列表文字内容*/
 .item-content{
-  width: 55%;
-  height: 115px;
+  width: 53%;
+  height: 2.3rem;
   /*border: 1px solid #000;*/
   float: left;
 }
 .item-content p:nth-child(1){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 5px;
     font-weight: bolder;
+    font-size: 0.35rem;
 }
 .star-box{
-  margin-left: 15px;
+  margin-left: 0.3rem;
   margin-bottom: 6px;
-  width: 75px;
+  width: 1.5rem;
   float: left;
 }
 .score-box{
   width: 100%;
-  height: 19px;
-  font-size: 13px;
+  height: 0.38rem;
+  font-size: 0.26rem;
   color:#777676
 }
 .item-content p:nth-child(3),.item-content p:nth-child(4){
-    margin-left: 15px;
-    margin-bottom: 3px;
-    font-size: 13px;
+    margin-left: 0.3rem;
+    margin-bottom: 0.06rem;
+    font-size: 0.26rem;
     color:#777676;
 }
 .item-content p:nth-child(5){
-    margin-left: 15px;
-    margin-bottom: 5px;
-    font-size: 13px;
+    margin-left: 0.3rem;
+    margin-bottom: 0.06rem;
+    font-size: 0.26rem;
 }
 
 
 /*电影列表购买按钮*/
 .item-btn{
-  width: 18%;
-  height: 115px;
-  /*border: 1px solid pink;*/
+  width: 16%;
+  height: 2.3rem;
+  /* border: 1px solid pink; */
   float: left;
-  box-sizing:border-box;
-  padding-top: 40px;
-  padding-left: 5px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 0rem;
+  padding-left: 0rem;
+  margin-left: 0.2rem;
 }
 .mint-button--default.is-plain {
     border: 1px solid #d02f5e;
     color: #d02f5e;
 }
 .btn-yellow{
-  border: 1px solid #d09f38 !important;
+    border: 0.02rem solid #d09f38 !important;
     color: #d09f38 !important;
+    border-radius: 0.08rem;
 }
 .mint-button--small {
-    font-size: 12px;
-    padding: 0 15px;
-    height: 30px;
+    font-size: 0.24rem;
+    padding: 0 0.3rem;
+    height: 0.6rem;
     font-weight: bold;
 }
 /*路由链接*/
@@ -204,6 +231,8 @@ a:-webkit-any-link {
     cursor: auto;
     text-decoration: underline;
 }
+
+
 </style>
    
 

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id='detail'>
       <!-- 头部 -->
 	    <mt-header title="电影">
         <!-- <router-link to="/" slot="left"> -->
@@ -45,18 +45,18 @@
             <mt-button plain class='btn-yellow btn-size1' size="small">想看</mt-button>
             <mt-button plain class='btn-yellow btn-size2' size="small">看过
               &nbsp
-              <img src='../../assets/icon/空星.png' width="12">
-              <img src='../../assets/icon/空星.png' width="12">
-              <img src='../../assets/icon/空星.png' width="12">
-              <img src='../../assets/icon/空星.png' width="12">
-              <img src='../../assets/icon/空星.png' width="12">
+              <img src='../../assets/icon/空星.png' style="width:0.24rem">
+              <img src='../../assets/icon/空星.png' style="width:0.24rem">
+              <img src='../../assets/icon/空星.png' style="width:0.24rem">
+              <img src='../../assets/icon/空星.png' style="width:0.24rem">
+              <img src='../../assets/icon/空星.png' style="width:0.24rem">
 
             </mt-button>
          </div>
          <div class="movie-ticket">
-            <img src="../../assets/icon/电影票.png" width="20">
-            <span style="font-weight:bold;margin-right:5px;color:#515151;font-size:15px;">选票购票</span>
-            <img src="../../assets/icon/右.png" style="float:right;width:17px;margin-right:18px;">
+            <img src="../../assets/icon/电影票.png" style="width:0.4rem;">
+            <span style="font-weight:bold;margin-right:0.1rem;color:#515151;font-size:0.3rem;">选票购票</span>
+            <img src="../../assets/icon/右.png" style="float:right;width:0.34rem;margin-right:0.36rem;">
             <span class="ticket-right">￥27起</span>
          </div>
       </div>
@@ -75,41 +75,12 @@
           <div>
               <div class="swiper-container">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">
-                          <div class='actor-content'>
-                            <img src="../../assets/img/吴京.jpg" width="100%">
-                              <p>吴京</p>
-                              <p>饰：冷锋</p>
+                      <div class="swiper-slide" v-for='casts in jsondata.casts'>
+                          <div class='actor-content' v-for='casts in jsondata.casts'>
+                            <img :src="casts.avatars.medium" width="100%">
+                              <p>{{casts.name}}</p>
                           </div>
-                          <div class='actor-content'>
-                            <img src="../../assets/img/弗兰克.jpg" width="100%">
-                              <p>弗兰克·格里罗</p>
-                              <p>饰：老爹</p>
-                          </div>  
-                          <div class='actor-content'>
-                            <img src="../../assets/img/吴刚.jpg" width="100%">
-                              <p>吴刚</p>
-                              <p>饰：何建国</p>
-                          </div>
-                      </div>
-                      <div class="swiper-slide">
-                         <div class='actor-content'>
-                           <img src="../../assets/img/张翰.jpg" width="100%">
-                             <p>张翰</p>
-                             <p>饰：卓亦凡</p>
-                         </div>
-                         <div class='actor-content'>
-                           <img src="../../assets/img/Jade.jpg" width="100%">
-                             <p>卢靖姗</p>
-                             <p>饰：Rechel</p>
-                         </div>  
-                         <div class='actor-content'>
-                           <img src="../../assets/img/吴京.jpg" width="100%">
-                             <p>吴京</p>
-                             <p>导演</p>
-                         </div>
-                      </div>
-                     
+                      </div>  
                   </div>
               </div>
 
@@ -118,43 +89,39 @@
       </div>
        
       <!-- 预告片/剧照 -->
-      <div class="actor">
+     <!--  <div class="actor">
           <p class="title">预告片/剧照</p>
           <div>
               <div class="swiper-container">
                   <div class="swiper-wrapper">
-                      <div class="swiper-slide">
+                      <div class="swiper-slide" >
                           <div class='photo'>
                             <img src="../../assets/img/剧照1.jpg" width="100%">
                           </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照6.jpg" width="100%" height="114">
-                          </div>
                          
                       </div>
-                      <div class="swiper-slide">
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照2.jpg" width="100%" height="114">
-                          </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照3.jpg" width="100%" height="114">
-                          </div>
-                      </div>
-                      <div class="swiper-slide">
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照4.jpg" width="100%" height="114">
-                          </div>
-                          <div class='photo'>
-                            <img src="../../assets/img/剧照5.jpg" width="100%" height="114">
-                          </div>
-                      </div>
-                     
                   </div>
               </div>
 
 
           </div>
-      </div>
+      </div> -->
+
+     <!-- <mt-navbar v-model="selected">
+       <mt-tab-item id="1">短评</mt-tab-item>
+       <mt-tab-item id="2">影评</mt-tab-item>
+     </mt-navbar> -->
+
+     <!-- tab-container -->
+    <!--  <mt-tab-container v-model="selected">
+       <mt-tab-container-item id="1">
+         <Comments></Comments>
+       </mt-tab-container-item>
+       <mt-tab-container-item id="2">
+         <Reviews></Reviews>
+       </mt-tab-container-item>
+     </mt-tab-container> -->
+
 	    
 	</div>	
 </template>
@@ -164,8 +131,14 @@ import Vue from 'vue'
 import { Header } from 'mint-ui';
 import { api } from '@/global/api.js'  //导入静态资源'
 import Star from '@/components/star' //导入星星打分组件
+import Comments from '@/view/detail/comments.vue'//导入短评组件
+import Reviews from '@/view/detail/reviews.vue'//导入短评组件
 import Swiper from '../../../static/Js/swiper-3.4.2.min.js'//导入Swiper插件
 import jsonp from '@/Js/json.js'//导入插口
+import { Navbar, TabItem } from 'mint-ui';//引入mintUI的导航条
+
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
 
 Vue.component(Header.name, Header);
 
@@ -176,6 +149,7 @@ export default {
   data: function(){
     return {
          jsondata:{},
+         selected:1,
          movieItem:[
             {
               "movieName":"",
@@ -190,7 +164,9 @@ export default {
     }
   },
   components:{
-    Star:Star
+    Star:Star,
+    Comments:Comments,
+    Reviews:Reviews
   },
   methods:{
 	   getData:function(){
@@ -214,63 +190,87 @@ export default {
   mounted(){
   	 this.getData();
       var mySwiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        loop: false,
+        pagination: '.swiper-pagination',
+        slidesPerView: 'auto',
+        paginationClickable: true,
+        spaceBetween: 30,
+        loop:false
       })
             
   }
  
 }
 </script>
-<style scoped>
+<style>
 /*简介部分*/
-.introduction{
+#detail .introduction{
   width: 100%;
   height: auto;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
-  margin-top: 8px;
-  padding:20px 15px 0;
+  margin-top: 0.16rem;
+  padding:0.4rem 0.3rem 0;
 }
-.title{
-  font-size:13px;
+#detail .title{
+  font-size:0.26rem;
   color: #777676;
-  margin-bottom: 12px;
+  margin-bottom: 0.24rem;
 }
-.intro-content1,.intro-content2{
-  font-size: 14px;
-  letter-spacing: 1px;
+#detail .intro-content1,.intro-content2{
+  font-size: 0.28rem;
+  letter-spacing: 0.02rem;
 }
 /*影人部分*/
-.actor{
+#detail .actor{
   width: 100%;
-  height: 230px;
-  margin-top: 20px;
-  padding:0px 0px 0px 15px;
+  height: auto;
+  margin-top: 0.4rem;
+  padding:0px 0px 0px 0.3rem;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
 }
-.actor-content{
+#detail .actor-content{
   width: 30%;
   height: auto;
   /*border:1px solid #000;*/
   text-align: center;
   float: left;
-  margin-right: 9px;
+  margin-right: 0.18rem;
 }
-.actor-content p:nth-child(2){
-  font-size: 13px;
+#detail .actor-content p:nth-child(2){
+  font-size: 0.26rem;
+  margin-bottom: 0.3rem;
 }
-.actor-content p:nth-child(3){
-  font-size: 12px;
+#detail .actor-content p:nth-child(3){
+  font-size: 0.24rem;
   color:  #777676;
   line-height: 1.5;
 }
 /*预告片*/
-.photo{
+#detail .photo{
   width: 47%;
-  margin-right: 9px;
+  margin-right: 0.18rem;
   float: left;
+}
+#detail .mint-navbar{
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-top: 0.4rem;
+  background: #eae6e6;
+
+}
+#detail .mint-navbar .mint-tab-item.is-selected {
+    border-bottom: 1.5px solid #4a4849;
+    color: #4a4849;
+    margin-bottom: 0px;
+    font-size: 0.28rem !important;
+}
+#detail .mint-navbar .mint-tab-item{
+  color: #949292;
+  font-size: 0.28rem !important;
+}
+#detail .mint-navbar .mint-tab-item {
+    padding: 0.28rem 0;
 }
 
 
@@ -281,120 +281,125 @@ export default {
 
 
 /*头部*/
-.mint-header {   
+#detail .mint-header {   
   background-color: rgba(24, 29, 26, 0.94);
-  font-size: 16px;
+  font-size: 0.32rem;
 }
 /*海报部分*/
-.div-poster{
+#detail .div-poster{
   width: 100%;
   height: auto;
   background: rgba(24, 29, 26, 0.94);
-  padding:15px 0;
+  padding:0.3rem 0;
   text-align: center;
 }
-.poster{
-  width: 200px;
+#detail .poster{
+  width: 4rem;
   height: auto;
   /*border: 1px solid #fff;*/
   margin:0 auto;
 }
-.poster img{
+#detail .poster img{
   width: 100%;
 }
 /*电影简介*/
-.movie-head{
+#detail .movie-head{
   width: 100%;
-  height: 230px;
+  height: 4.6rem;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
 }
-.movie-score{
+#detail .movie-score{
   width: 100%;
-  height: 120px;
+  height: 2.4rem;
   /*border: 1px solid red;*/
   box-sizing: border-box;
 }
-.score-left{
+#detail .score-left{
   width: 74%;
-  height: 120px;
+  height: 2.4rem;
   /*border: 1px solid red;*/
   box-sizing: border-box;
-  padding: 20px 15px;
+  padding: 0.4rem 0.3rem;
   float: left;
 }
-.score-left p:nth-child(1){
+#detail .score-left p:nth-child(1){
   font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 8px;
+  font-size: 0.4rem;
+  margin-bottom: 0.16rem;
 }
-.score-left p:nth-child(2),.score-left p:nth-child(3),.score-left p:nth-child(4){
-  font-size: 12px;
+#detail .score-left p:nth-child(2),.score-left p:nth-child(3),.score-left p:nth-child(4){
+  font-size: 0.24rem;
   color: #777676;
 }
-.score-right{
+#detail .score-right{
   width: 25%;
-  height: 120px;
+  height: 2.4rem;
   /*border: 1px solid #000;*/
   box-sizing: border-box;
-  padding: 20px 0px;
+  padding: 0.4rem 0px;
   float: left;
 }
-.score-box{
-  width: 80px;
-  height: 100px;
+#detail .score-box{
+  width: 1.6rem;
+  height: 2rem;
   /*border: 1px solid #000;*/
-  box-shadow: 0px 0px 20px #8c8b8b;
+  box-shadow: 0px 0px 0.4rem #8c8b8b;
   text-align: center;
   box-sizing: border-box;
-  padding:5px 5px;
+  padding:0.1rem 0.1rem;
 }
-.score-box p:nth-child(1){
-  font-size: 11px;
+#detail .score-box p:nth-child(1){
+  font-size: 0.22rem;
   color: #777676;
 }
-.score-box p:nth-child(2){
-  font-size: 17px;
+#detail .score-box p:nth-child(2){
+  font-size: 0.34rem;
   color: #000;
   font-weight: bold;
-  margin: 3px 0;
+  margin: 0.06rem 0;
 }
-.score-box p:nth-child(4){
-  font-size: 11px;
+#detail .score-box p:nth-child(4){
+  font-size: 0.22rem;
   color:#777676;
-  margin-top: 5px;
+  margin-top: 0.1rem;
 }
-.movie-btn{
+#detail .movie-btn{
   width: 100%;
-  height: 50px;
+  height: 1rem;
   /*border: 1px solid #000;*/
-  padding: 10px 15px;
+  padding: 0.2rem 0.3rem;
   box-sizing: border-box;
 }
-.btn-yellow{
+#detail .btn-yellow{
   border: 1px solid orange !important;
   color: orange !important;
   font-weight: bolder;
   margin-right: 10px;
   margin-top: 20px;
+  font-size: 0.3rem;
+  height: 0.65rem;
 }
-.btn-size1{
+#detail .btn-size1{
   width: 27%;
 }
-.btn-size2{
-  width:65%;
+#detail .btn-size2{
+  width:62%;
 }
-.movie-ticket{
+#detail .movie-ticket{
   width: 100%;
-  height: 50px;
+  height: 1rem;
   /*border: 1px solid green;*/
-  padding:25px 0px 0px 15px;
+  padding:0.5rem 0px 0px 0.3rem;
   box-sizing: border-box;
   margin-top: 5px;
 }
-.ticket-right{
+#detail .ticket-right{
   float: right;
   color: red;
-  font-size: 12px;
+  font-size: 0.24rem;
+}
+#detail .mintui {
+    font-size: 0.32rem !important;
 }
 </style>

@@ -30,8 +30,8 @@
     display: flex;
   }
   .star img{
-    width: 13px;
-    height: 13px;
+    width: 0.26rem;
+    height: 0.26rem;
   }
 </style>
 

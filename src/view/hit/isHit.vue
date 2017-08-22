@@ -11,7 +11,7 @@
 	    	 	  placeholder="电影/电视剧/影人"
 	    	 	  icon="search"
 	    	 	  v-model="searchInput"
-	    	 	   :on-click="searchChange">
+	    	 	   :on-click="searchChange" style='margin:0;'>
 	    	 	</el-input>
 	    	 	</router-link>
 	    	</div>
@@ -71,34 +71,46 @@ export default {
  
 }
 </script>
-<style scoped>
+<style>
 .top-nav{
 	width: 100%;
-	height: 40px;	
+	height: 0.8rem;	
 	/*border:1px solid #000;*/
 }
 .top-site{
-	width: 16%;
+	width: 18%;
     float: left;
-    padding: 15px 6px;
+    padding: 0.35rem 0.2rem;
     box-sizing: border-box;
-    font-size:13px;
+    font-size:0.26rem;
     font-family: monospace;
+    /*border:1px solid blue;*/
 
 }
 .top-search{
-	width: 84%;
+	width: 82%;
 	float: left;
-	padding: 3px 10px 3px 0px;
+	height: 0.8rem;
+	padding: 3px 0.2rem 3px 0px;
 	box-sizing: border-box;
+	margin-top:-0.5rem;
 }
 [class*=" el-icon-"], [class^=el-icon-]{
-	font-size:5px;
+	font-size:0.2rem;
 }
 
-.el-input__inner {   
+.top-search .el-input__inner {   
     background-color: #eaeaea;
     border: 1px solid #fbfdff;
+    height: 0.72rem !important;
+    padding: 3px 0.2rem;
+}
+.el-input {
+    font-size: 0.28rem;
+}
+.el-input__icon {
+    width: 0.7rem;
+    font-size: 0.24rem;
 }
 .middle-nav{
 	width: 100%;
@@ -114,14 +126,17 @@ export default {
     border-bottom: 1.5px solid #4a4849;
     color: #4a4849;
     margin-bottom: 0px;
-    font-size: 14px !important;
+    font-size: 0.28rem !important;
 }
 .mint-navbar .mint-tab-item{
 	color: #949292;
-	font-size: 14px !important;
+	font-size: 0.28rem !important;
 }
 .mint-navbar .mint-tab-item {
-    padding: 14px 0;
+    padding: 0.28rem 0;
+}
+.mint-tab-item-label {
+    font-size: 0.24rem !important;
 }
 
 </style>

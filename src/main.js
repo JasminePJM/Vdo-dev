@@ -14,8 +14,10 @@ import 'element-ui/lib/theme-default/index.css'
 // Swiper
 import '../static/Js/swiper-3.4.2.min.css'
 import '../static/Js/swiper-3.4.2.min.js'
-
+// 跨域
 import focus from './Js/focus'
+// 适配方案
+import './Js/rem.js'
 
 Vue.use(MintUI)
 Vue.use(ElementUI)

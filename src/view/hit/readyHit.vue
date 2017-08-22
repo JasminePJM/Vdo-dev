@@ -20,7 +20,7 @@
           <router-link :to="{path:'/detail/'+Item.id}">
                <!-- 电影子块海报 -->
             <div class="item-poster">
-              <img v-bind:src="Item.images.small">
+              <img v-bind:src="Item.images.large">
             </div>
             <!-- 电影子块文字内容 -->
             <div class="item-content">
@@ -37,7 +37,6 @@
 	    	 
 	    	</div>
 	    </div>
-      <div class="test"></div>
       
 	    
 	</div>	
@@ -89,9 +88,9 @@ export default {
   	    	})
   	    },
         request() {
-            // let loading = Vue.prototype.$loading({text:"玩命加载中..."});
+            let loading = Vue.prototype.$loading({text:"玩命加载中..."});
             jsonp('https://api.douban.com/v2/movie/coming_soon', {}, function (data) {
-                // loading.close();//结束loading效果
+                loading.close();//结束loading效果
                 this.jsondata = data;
                 console.log(this.jsondata);
             }.bind(this));
@@ -112,104 +111,108 @@ export default {
 /*即将上映时间筛选*/
 .nav-select{
 	width: 100%;
-	height: 30px;
-	/*border: 1px solid red;*/
+	height: 0.6rem;
   border-bottom: 1px solid #ccc;
 	box-sizing:border-box;
 }
 .nav-left{
 	float: left;
-  font-size: 14px;
-  margin: 4px 7px;
+  font-size: 0.28rem;
+  margin: 4px 0.14rem;
   color: #949292;
 }
 .nav-right{
 	float:right;
-	font-size: 14px;
-  margin: 4px 7px;
+	font-size: 0.28rem;
+  margin: 4px 0.14rem;
   color: #949292;
 }
 .mint-tab-item {
   display: block;
-  padding: 10px 0;
-  width: 80px;
+  padding: 0.2rem 0;
+  width: 1.6rem;
   flex: 0; 
   text-decoration: none;
-  margin: 5px 30px;
+  margin: 5px 0.6rem;
 }
 
 /*电影列表*/
 .movie-list{
-	width: 100%;
-	height: 500px;
-	/*border: 1px solid #000;*/
-	box-sizing:border-box;
+  width: 100%;
+  height: auto;
+  /*border: 1px solid #000;*/
+  box-sizing:border-box;
 }
 .movie-item{
-	width: 100%;
-	height: 150px;
-	border-bottom: 1px solid #ccc;
-	padding: 15px 5px 15px 10px;
-	box-sizing:border-box;
+  width: 100%;
+  height: 3.55rem;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0.1rem 0.6rem 0.2rem;
+  box-sizing:border-box;
 }
 /*电影列表海报小图*/
 .item-poster{
-	width: 25%;
-	height: 115px;
-	/*border: 1px solid #000;*/
-	float: left;
+  width: 28%;
+  height: 3rem;
+  /*border: 1px solid #000;*/
+  float: left;
 }
 .item-poster img{
-	width: 100%;
-	height: 115px; 
+  width: 100%;
+  height: 3rem; 
 }
 /*电影列表文字内容*/
 .item-content{
-	width: 55%;
-	height: 115px;
+	width: 51%;
+	height: 2.3rem;
 	/*border: 1px solid #000;*/
 	float: left;
 }
 .item-content p:nth-child(1){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 5px;
     font-weight: bolder;
+    font-size: 0.35rem;
+    margin-bottom: 0.3rem;
 }
 .item-content p:nth-child(2),.item-content p:nth-child(3){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 3px;
-    font-size: 13px;
+    font-size: 0.26rem;
     color:#777676;
 }
 .item-content p:nth-child(4){
-    margin-left: 15px;
+    margin-left: 0.3rem;
     margin-bottom: 5px;
-    font-size: 13px;
+    font-size: 0.26rem;
 }
 
 
 /*电影列表购买按钮*/
 .item-btn{
-	width: 18%;
-	height: 115px;
-	/*border: 1px solid pink;*/
-	float: left;
-	box-sizing:border-box;
-	padding-top: 40px;
-	padding-left: 5px;
+	width: 17%;
+  height: 2.3rem;
+  /* border: 1px solid pink; */
+  float: left;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 0rem;
+  padding-left: 0.1rem;
+  margin-left: 0.2rem;
 }
 .mint-button--default.is-plain {
-    border: 1px solid #d02f5e;
+    border: 0.02rem solid #d02f5e;
     color: #d02f5e;
 }
 .btn-yellow{
-	border: 1px solid #d09f38 !important;
+	  border: 0.02rem solid #d09f38 !important;
     color: #d09f38 !important;
+    border-radius: 0.08rem;
 }
 .mint-button--small {
-    font-size: 12px;
-    padding: 0 15px;
-    height: 30px;
+    font-size: 0.24rem;
+    padding: 0 0.3rem;
+    height: 0.6rem;
     font-weight: bold;
 }
 /*路由链接*/
